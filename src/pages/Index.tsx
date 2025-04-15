@@ -1,12 +1,79 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import Header from "@/components/Header";
+import Categories from "@/components/Categories";
+import ItemSection from "@/components/ItemSection";
+import BottomNavigation from "@/components/BottomNavigation";
+
+const borrowedItems = [
+  {
+    id: 1,
+    name: "Programming Textbook",
+    owner: "Alex Chen",
+    image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    id: 2,
+    name: "Wireless Headphones",
+    owner: "Jamie Smith",
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    id: 3,
+    name: "Tennis Racket",
+    owner: "Taylor Roberts",
+    image: "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    id: 4,
+    name: "Scientific Calculator",
+    owner: "Jordan Lee",
+    image: "https://images.unsplash.com/photo-1573791388430-171408c2e831?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  }
+];
+
+const recentItems = [
+  {
+    id: 1,
+    name: "Leather Jacket",
+    owner: "Casey Morgan",
+    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    id: 2,
+    name: "Biology Textbook",
+    owner: "Riley Johnson",
+    image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    id: 3,
+    name: "Smart Watch",
+    owner: "Quinn Davis",
+    image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    id: 4,
+    name: "Basketball",
+    owner: "Avery Wilson",
+    image: "https://images.unsplash.com/photo-1518063319789-7217e6706b04?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  }
+];
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background pb-20">
+      <Header />
+      <main>
+        <Categories />
+        <div className="mt-1 mb-2 px-4">
+          <div className="h-px bg-border" />
+        </div>
+        <ItemSection title="Borrowed by you" items={borrowedItems} />
+        <div className="mt-1 mb-2 px-4">
+          <div className="h-px bg-border" />
+        </div>
+        <ItemSection title="Recently added" items={recentItems} />
+      </main>
+      <BottomNavigation />
     </div>
   );
 };

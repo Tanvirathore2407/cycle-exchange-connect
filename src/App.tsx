@@ -9,6 +9,9 @@ import NotFound from "./pages/NotFound";
 import AddPost from "./pages/AddPost";
 import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
+import CategoryView from "./pages/CategoryView";
+import ItemView from "./pages/ItemView";
+import EditProfile from "./pages/EditProfile";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +26,9 @@ const App = () => (
           <Route path="/add-post" element={<AddPost />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/messages" element={<Messages />} />
+          <Route path="/category/:categoryId" element={<CategoryView />} />
+          <Route path="/item/:source/:itemId" element={<ItemView />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import BottomNavigation from "@/components/BottomNavigation";
 import Header from "@/components/Header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -38,6 +39,8 @@ const borrowedItems = [
 ];
 
 const Profile = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen bg-background pb-20">
       <Header />
@@ -48,7 +51,11 @@ const Profile = () => {
               <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
-            <Button variant="ghost" size="icon" className="absolute bottom-0 right-0 rounded-full bg-primary text-primary-foreground h-7 w-7">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="absolute bottom-0 right-0 rounded-full bg-primary text-primary-foreground h-7 w-7"
+            >
               <Edit className="h-3 w-3" />
             </Button>
           </div>
@@ -56,7 +63,13 @@ const Profile = () => {
           <p className="text-sm text-muted-foreground">Computer Science - Year 3</p>
           
           <div className="mt-4 flex gap-3">
-            <Button variant="outline" size="sm">Edit Profile</Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => navigate("/edit-profile")}
+            >
+              Edit Profile
+            </Button>
             <Button variant="ghost" size="icon">
               <Settings className="h-4 w-4" />
             </Button>

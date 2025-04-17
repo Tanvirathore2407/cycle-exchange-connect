@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import BottomNavigation from "@/components/BottomNavigation";
 import Header from "@/components/Header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Send, PaperclipIcon } from "lucide-react";
+import { Search, Send, PaperclipIcon, ChevronLeft } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 const conversations = [
@@ -43,7 +42,6 @@ const conversations = [
   }
 ];
 
-// Sample message data
 const messageHistory = [
   { id: 1, sender: "other", text: "Hi, is the textbook still available?", time: "10:30 AM" },
   { id: 2, sender: "me", text: "Yes, it's still available. When would you like to pick it up?", time: "10:32 AM" },
@@ -59,7 +57,6 @@ const Messages = () => {
   const handleSendMessage = () => {
     if (!messageText.trim()) return;
     
-    // Add new message to the conversation
     const newMessage = {
       id: messages.length + 1,
       sender: "me",

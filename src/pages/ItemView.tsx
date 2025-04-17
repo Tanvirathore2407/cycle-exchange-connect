@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { ChevronLeft, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,15 +7,35 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 
+type BorrowedItem = {
+  id: string;
+  name: string;
+  owner: string;
+  image: string;
+  description: string;
+  borrowDate: string;
+  returnDate: string;
+};
+
+type RecentItem = {
+  id: string;
+  name: string;
+  owner: string;
+  image: string;
+  description: string;
+  postedDate: string;
+};
+
+type ItemType = BorrowedItem | RecentItem;
+
 const ItemView = () => {
   const { itemId, source } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  // Mock item data based on the source (borrowed, recent) and itemId
-  const getItemDetails = () => {
+  const getItemDetails = (): ItemType | null => {
     if (source === "borrowed") {
-      const borrowedItems = [
+      const borrowedItems: BorrowedItem[] = [
         {
           id: "1",
           name: "Programming Textbook",
@@ -54,9 +73,9 @@ const ItemView = () => {
           returnDate: "Apr 17, 2025"
         }
       ];
-      return borrowedItems.find(item => item.id === itemId);
+      return borrowedItems.find(item => item.id === itemId) || null;
     } else if (source === "recent") {
-      const recentItems = [
+      const recentItems: RecentItem[] = [
         {
           id: "1",
           name: "Leather Jacket",
@@ -90,7 +109,7 @@ const ItemView = () => {
           postedDate: "Apr 11, 2025"
         }
       ];
-      return recentItems.find(item => item.id === itemId);
+      return recentItems.find(item => item.id === itemId) || null;
     }
     return null;
   };
@@ -122,7 +141,6 @@ const ItemView = () => {
   }
 
   const handleContactOwner = () => {
-    // Navigate to messages with this owner
     navigate("/messages");
     toast({
       title: "Message started",
@@ -179,7 +197,7 @@ const ItemView = () => {
                   <p className="text-sm text-muted-foreground">{item.description}</p>
                 </div>
                 
-                {source === "borrowed" && (
+                {source === "borrowed" && item && 'borrowDate' in item && (
                   <Card className="mt-4 bg-secondary/30">
                     <CardContent className="p-4">
                       <h3 className="font-medium mb-2">Borrowing Details</h3>
@@ -197,7 +215,7 @@ const ItemView = () => {
                   </Card>
                 )}
                 
-                {source === "recent" && (
+                {source === "recent" && item && 'postedDate' in item && (
                   <Card className="mt-4 bg-secondary/30">
                     <CardContent className="p-4">
                       <h3 className="font-medium mb-2">Item Details</h3>

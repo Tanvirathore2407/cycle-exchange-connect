@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import BottomNavigation from "@/components/BottomNavigation";
 import Header from "@/components/Header";
@@ -77,7 +76,6 @@ const AddPost = () => {
       description: "Post created successfully"
     });
 
-    // Reset form
     setFormData({
       name: "",
       category: "",
@@ -85,6 +83,8 @@ const AddPost = () => {
       contact: ""
     });
     setSelectedImage(null);
+    
+    navigate('/');
   };
 
   return (

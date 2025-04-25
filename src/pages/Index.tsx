@@ -1,4 +1,4 @@
-
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Categories from "@/components/Categories";
 import ItemSection from "@/components/ItemSection";
@@ -31,6 +31,23 @@ const borrowedItems = [
   }
 ];
 
+interface PostItem {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  contact: string;
+  image: string;
+  createdAt: string;
+}
+
+interface Item {
+  id: number | string;
+  name: string;
+  owner: string;
+  image: string;
+}
+
 const recentItems = [
   {
     id: 1,
@@ -59,6 +76,24 @@ const recentItems = [
 ];
 
 const Index = () => {
+  const [userPosts, setUserPosts] = useState<Item[]>([]);
+  
+  useEffect(() => {
+    const savedPosts = localStorage.getItem("posts");
+    if (savedPosts) {
+      const posts = JSON.parse(savedPosts) as PostItem[];
+      
+      const formattedPosts = posts.map(post => ({
+        id: post.id,
+        name: post.name,
+        owner: "You",
+        image: post.image
+      }));
+      
+      setUserPosts(formattedPosts);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-background pb-20">
       <Header />
@@ -71,7 +106,7 @@ const Index = () => {
         <div className="mt-1 mb-2 px-4">
           <div className="h-px bg-border" />
         </div>
-        <ItemSection title="Recently added" items={recentItems} />
+        <ItemSection title="Recently added" items={[...userPosts, ...recentItems].slice(0, 8)} />
       </main>
       <BottomNavigation />
     </div>

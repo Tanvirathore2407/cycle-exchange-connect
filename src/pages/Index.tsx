@@ -33,7 +33,8 @@ const borrowedItems: Item[] = [
     name: "Scientific Calculator",
     owner: "Jordan Lee",
     image: "https://images.unsplash.com/photo-1573791388430-171408c2e831?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    description: "Graphing calculator with all functions needed for advanced math and science courses."
+    description: "Graphing calculator with all functions needed for advanced math and science courses.",
+    category: "electronics"
   }
 ];
 
@@ -98,7 +99,7 @@ const Index = () => {
     <div className="min-h-screen bg-background pb-20">
       <Header />
       <main>
-        <Categories userPosts={userPosts} />
+        <Categories userPosts={[...userPosts, ...borrowedItems]} />
         <div className="mt-1 mb-2 px-4">
           <div className="h-px bg-border" />
         </div>

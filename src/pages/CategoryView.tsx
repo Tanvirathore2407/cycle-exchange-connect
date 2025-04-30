@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -86,6 +87,13 @@ const categoryItems: Record<string, Item[]> = {
       owner: "Taylor Reed",
       image: "https://images.unsplash.com/photo-1588599376442-3cbf9c67449e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       description: "A USB hub for expanding connectivity."
+    },
+    {
+      id: "3",
+      name: "Scientific Calculator",
+      owner: "Jordan Lee",
+      image: "https://images.unsplash.com/photo-1573791388430-171408c2e831?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      description: "Graphing calculator with all functions needed for advanced math and science courses."
     }
   ],
   accessories: [

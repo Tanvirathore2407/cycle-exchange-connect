@@ -1,5 +1,4 @@
-
-import { Footprints, Shirt, BookOpen, Pill, Laptop, Watch, Box } from "lucide-react";
+import { Footprints, Shirt, BookOpen, Pill, Laptop, Watch } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Item } from "@/types/item";
 
@@ -45,13 +44,6 @@ const categories = [
     slug: "accessories",
     icon: Watch,
     image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 7,
-    name: "Other Items",
-    slug: "other",
-    icon: Box,
-    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   }
 ];
 

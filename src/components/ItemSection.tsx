@@ -12,10 +12,11 @@ const ItemSection = ({ title, items }: ItemSectionProps) => {
   const navigate = useNavigate();
   
   const handleItemClick = (item: Item) => {
-    if (title.toLowerCase().includes("borrow")) {
+    // Check if it's a user-posted item 
+    if (item.id.toString().startsWith("post-")) {
+      navigate(`/item/post/${item.id.toString().replace("post-", "")}`);
+    } else if (title.toLowerCase().includes("borrow")) {
       navigate(`/item/borrowed/${item.id}`);
-    } else if (item.owner === "You") {
-      navigate(`/item/post/${item.id}`);
     } else {
       navigate(`/item/recent/${item.id}`);
     }
@@ -45,25 +46,31 @@ const ItemSection = ({ title, items }: ItemSectionProps) => {
         )}
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {items.map((item) => (
-          <div 
-            key={item.id} 
-            className="item-card cursor-pointer"
-            onClick={() => handleItemClick(item)}
-          >
-            <div className="relative aspect-square overflow-hidden">
-              <img 
-                src={item.image} 
-                alt={item.name}
-                className="w-full h-full object-cover transition-transform hover:scale-105"
-              />
+        {items.length > 0 ? (
+          items.map((item) => (
+            <div 
+              key={item.id} 
+              className="item-card cursor-pointer"
+              onClick={() => handleItemClick(item)}
+            >
+              <div className="relative aspect-square overflow-hidden">
+                <img 
+                  src={item.image} 
+                  alt={item.name}
+                  className="w-full h-full object-cover transition-transform hover:scale-105"
+                />
+              </div>
+              <div className="p-3">
+                <h3 className="font-medium text-sm">{item.name}</h3>
+                <p className="text-xs text-muted-foreground">From {item.owner}</p>
+              </div>
             </div>
-            <div className="p-3">
-              <h3 className="font-medium text-sm">{item.name}</h3>
-              <p className="text-xs text-muted-foreground">From {item.owner}</p>
-            </div>
+          ))
+        ) : (
+          <div className="col-span-2 md:col-span-4 py-8 text-center">
+            <p className="text-muted-foreground">No items found</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

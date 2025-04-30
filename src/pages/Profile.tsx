@@ -1,5 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import BottomNavigation from "@/components/BottomNavigation";
 import Header from "@/components/Header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -7,31 +8,17 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ItemSection from "@/components/ItemSection";
 import { Edit, Settings } from "lucide-react";
-
-const myItems = [
-  {
-    id: 1,
-    name: "Vintage Camera",
-    owner: "You",
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-  },
-  {
-    id: 2,
-    name: "Designer Sunglasses",
-    owner: "You",
-    image: "https://images.unsplash.com/photo-1577803645773-f96470509666?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-  }
-];
+import { PostItem, Item } from "@/types/item";
 
 const borrowedItems = [
   {
-    id: 1,
+    id: "1",
     name: "Programming Textbook",
     owner: "Alex Chen",
     image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
   },
   {
-    id: 2,
+    id: "2",
     name: "Wireless Headphones",
     owner: "Jamie Smith",
     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
@@ -40,6 +27,27 @@ const borrowedItems = [
 
 const Profile = () => {
   const navigate = useNavigate();
+  const [myItems, setMyItems] = useState<Item[]>([]);
+  
+  useEffect(() => {
+    // Load user posts from localStorage
+    const savedPosts = localStorage.getItem("posts");
+    if (savedPosts) {
+      const posts = JSON.parse(savedPosts) as PostItem[];
+      
+      const formattedPosts = posts.map(post => ({
+        id: `post-${post.id}`,  // Prefix with post- to identify user posts
+        name: post.name,
+        owner: "You",
+        image: post.image,
+        description: post.description,
+        postedDate: new Date(post.createdAt).toLocaleDateString(),
+        category: post.category
+      }));
+      
+      setMyItems(formattedPosts);
+    }
+  }, []);
   
   return (
     <div className="min-h-screen bg-background pb-20">

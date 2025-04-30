@@ -82,7 +82,7 @@ const Index = () => {
       const posts = JSON.parse(savedPosts) as PostItem[];
       
       const formattedPosts = posts.map(post => ({
-        id: post.id,
+        id: `post-${post.id}`,  // Prefix with post- to identify user posts
         name: post.name,
         owner: "You",
         image: post.image,

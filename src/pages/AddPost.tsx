@@ -8,16 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
-
-interface PostItem {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  contact: string;
-  image: string;
-  createdAt: string;
-}
+import { PostItem } from "@/types/item";
 
 const AddPost = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -181,7 +172,11 @@ const AddPost = () => {
             <h2 className="text-xl font-semibold mb-4">Your Posts</h2>
             <div className="grid grid-cols-2 gap-4">
               {posts.map((post) => (
-                <div key={post.id} className="border rounded-lg p-3">
+                <div 
+                  key={post.id} 
+                  className="border rounded-lg p-3"
+                  onClick={() => navigate(`/item/post/${post.id}`)}
+                >
                   <img 
                     src={post.image} 
                     alt={post.name} 

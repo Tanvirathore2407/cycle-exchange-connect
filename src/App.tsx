@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
 import CategoryView from "./pages/CategoryView";
 import ItemView from "./pages/ItemView";
+import PostItemView from "./pages/PostItemView";
 import EditProfile from "./pages/EditProfile";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/messages" element={<Messages />} />
           <Route path="/category/:categoryId" element={<CategoryView />} />
           <Route path="/item/:source/:itemId" element={<ItemView />} />
+          <Route path="/item/post/:itemId" element={<PostItemView />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

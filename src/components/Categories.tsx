@@ -1,6 +1,7 @@
 
 import { Footprints, Shirt, BookOpen, Pill, Laptop, Watch } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Item } from "@/types/item";
 
 const categories = [
   {
@@ -47,33 +48,54 @@ const categories = [
   }
 ];
 
-const Categories = () => {
+interface CategoriesProps {
+  userPosts?: Item[];
+}
+
+const Categories = ({ userPosts = [] }: CategoriesProps) => {
   const navigate = useNavigate();
   
   const handleCategoryClick = (categorySlug: string) => {
     navigate(`/category/${categorySlug}`);
+  };
+
+  // Count user posts by category
+  const getCategoryItemCount = (slug: string) => {
+    if (!userPosts || userPosts.length === 0) return null;
+    const count = userPosts.filter(post => post.category === slug).length;
+    return count > 0 ? count : null;
   };
   
   return (
     <div className="px-4 py-6">
       <h2 className="text-xl font-bold font-playfair mb-4">Categories</h2>
       <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-        {categories.map((category) => (
-          <div 
-            key={category.id} 
-            className="category-card cursor-pointer"
-            onClick={() => handleCategoryClick(category.slug)}
-          >
-            <img 
-              src={category.image} 
-              alt={category.name}
-              className="category-card-image"
-            />
-            <div className="category-label">
-              <span>{category.name}</span>
+        {categories.map((category) => {
+          const itemCount = getCategoryItemCount(category.slug);
+          
+          return (
+            <div 
+              key={category.id} 
+              className="category-card cursor-pointer relative"
+              onClick={() => handleCategoryClick(category.slug)}
+            >
+              <img 
+                src={category.image} 
+                alt={category.name}
+                className="category-card-image"
+              />
+              <div className="category-label">
+                <span>{category.name}</span>
+              </div>
+              
+              {itemCount && (
+                <div className="absolute top-2 right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {itemCount}
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

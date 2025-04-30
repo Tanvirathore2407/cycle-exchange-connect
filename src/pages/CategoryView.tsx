@@ -103,6 +103,24 @@ const categoryItems: Record<string, Item[]> = {
       image: "https://images.unsplash.com/photo-1622445275576-721325763afe?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       description: "A soft silk scarf for adding elegance to any outfit."
     }
+  ],
+  other: [
+    {
+      id: "1",
+      name: "Gaming Console",
+      owner: "Jordan Taylor",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      description: "A modern gaming console with two controllers and several popular games.",
+      category: "other"
+    },
+    {
+      id: "2",
+      name: "Toolbox Set",
+      owner: "Sam Rivera",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      description: "A complete set of tools for home repairs and DIY projects.",
+      category: "other"
+    }
   ]
 };
 

@@ -18,4 +18,5 @@ export interface Item {
   postedDate?: string;
   borrowDate?: string;
   returnDate?: string;
+  category?: string;
 }
